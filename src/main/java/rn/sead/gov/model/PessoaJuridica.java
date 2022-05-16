@@ -18,7 +18,9 @@ import java.util.Objects;
 @Entity
 public class PessoaJuridica extends Pessoa {
 
-    private String cnpj;
+	private static final long serialVersionUID = 1L;
+
+	private String cnpj;
 
     @Column(name = "razao_social")
     private String razaoSocial;

@@ -14,8 +14,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class AbstractEntity implements Serializable {
-
-    @Id
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date removed = null;

@@ -14,7 +14,9 @@ import java.util.Objects;
 @Entity
 public class Endereco extends AbstractEntity {
 
-    private Long numero;
+	private static final long serialVersionUID = 1L;
+
+	private Long numero;
 
     private String bairro;
 
