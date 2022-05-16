@@ -63,9 +63,9 @@ public class PessoaFisica extends Pessoa {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "pessoa_deficiencia", 
-		joinColumns = { @JoinColumn(name = "pessoa_id", referencedColumnName = "id_pessoa") }, 
+		joinColumns = { @JoinColumn(name = "pessoa_id") },
 		inverseJoinColumns = {@JoinColumn(name = "deficiencia_id") })
-	private List<Deficiencia> deficiencias = new ArrayList<Deficiencia>();
+	private List<Deficiencia> deficiencias;
 	
 	public void addDeficiencia(Deficiencia novaDeficiencia) {
 		deficiencias.add(novaDeficiencia);

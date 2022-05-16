@@ -30,7 +30,7 @@ public class Deficiencia extends AbstractEntity {
 	private String tipo;
 	
 	@ManyToMany(mappedBy="deficiencias")
-	private List<PessoaFisica> pessoasFisicas = new ArrayList<PessoaFisica>();
+	private List<PessoaFisica> pessoasFisicas;
 
 	public List<PessoaFisica> getPessoasFisicas(){
 		return pessoasFisicas;
