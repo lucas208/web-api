@@ -30,6 +30,7 @@ public abstract class AbstractService<E extends AbstractEntity, R extends Generi
 
     @Override
     public Optional<E> update(Long id,E entity) {
+    	entity.setId(id);
         return repository
                 .findById(id)
                 .map(record -> {
