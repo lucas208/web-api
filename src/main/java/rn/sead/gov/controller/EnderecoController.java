@@ -19,7 +19,7 @@ import rn.sead.gov.model.Endereco;
 import rn.sead.gov.service.EnderecoService;
 
 @RestController
-@RequestMapping(value = "/deficiencias")
+@RequestMapping(value = "/enderecos")
 public class EnderecoController {
 	
 	@Autowired

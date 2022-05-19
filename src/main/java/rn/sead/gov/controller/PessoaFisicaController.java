@@ -19,7 +19,7 @@ import rn.sead.gov.model.PessoaFisica;
 import rn.sead.gov.service.PessoaFisicaService;
 
 @RestController
-@RequestMapping(value = "/deficiencias")
+@RequestMapping(value = "/pessoas_fisicas")
 public class PessoaFisicaController {
 	
 	@Autowired

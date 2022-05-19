@@ -19,7 +19,7 @@ import rn.sead.gov.model.Servidor;
 import rn.sead.gov.service.ServidorService;
 
 @RestController
-@RequestMapping(value = "/deficiencias")
+@RequestMapping(value = "/servidores")
 public class ServidorController {
 	
 	@Autowired

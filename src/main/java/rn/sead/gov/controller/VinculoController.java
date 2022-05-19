@@ -19,7 +19,7 @@ import rn.sead.gov.model.Vinculo;
 import rn.sead.gov.service.VinculoService;
 
 @RestController
-@RequestMapping(value = "/deficiencias")
+@RequestMapping(value = "/vinculos")
 public class VinculoController {
 	
 	@Autowired
