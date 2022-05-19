@@ -36,12 +36,12 @@ public class PessoaFisica extends Pessoa {
 
 	private String uf;
 
-	private String nascionalidade;
+	private String nacionalidade;
 
 	@Column(name = "estado_civil")
 	private String estadoCivil;
 
-	private char sexo;
+	private String sexo;
 
 	@Column(name = "data_nascimento")
 	private Date dataNascimento;
