@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,13 +24,13 @@ import rn.sead.gov.model.generic.AbstractEntity;
 public class Vinculo extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(name = "data_nomeacao")
 	private LocalDate dataNomeacao;
-	
+
 	@Column(name = "data_posse")
 	private LocalDate dataPosse;
-	
+
 	@Column(name = "data_exercicio")
 	private LocalDate dataExercicio;
 	

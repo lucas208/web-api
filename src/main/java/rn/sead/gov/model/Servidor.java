@@ -1,23 +1,17 @@
 package rn.sead.gov.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import rn.sead.gov.model.generic.AbstractEntity;
 
+import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,7 +22,10 @@ import rn.sead.gov.model.generic.AbstractEntity;
 public class Servidor extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
-	
+
+	@NotBlank(message = "Informar matrícula")
+	@Digits(fraction = 0, integer = 7)
+	@Size(message = "Informar matricula com 7 dígitos", min = 7, max = 7)
 	private String matricula;
 	
 	@Column(name = "dados_bancarios")

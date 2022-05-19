@@ -6,6 +6,8 @@ import rn.sead.gov.model.generic.AbstractEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @AllArgsConstructor

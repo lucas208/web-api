@@ -3,6 +3,9 @@ package rn.sead.gov.model;
 import java.util.Objects;
 
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.Hibernate;
 
@@ -23,8 +26,10 @@ public abstract class Pessoa extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
 
+    @NotBlank
 	private String nome;
 
+    @Email
     private String email;
 
     @Override
