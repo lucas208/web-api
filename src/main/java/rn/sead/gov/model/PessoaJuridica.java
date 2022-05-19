@@ -3,11 +3,9 @@ package rn.sead.gov.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -39,6 +37,9 @@ public class PessoaJuridica extends Pessoa {
     @OneToOne
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
+
+    @OneToMany(mappedBy = "pessoaJuridica")
+    private List<Vinculo> vinculos;
 
     @Override
     public boolean equals(Object o) {

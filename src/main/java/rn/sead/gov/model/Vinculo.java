@@ -46,4 +46,8 @@ public class Vinculo extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "servidor_id")
 	private Servidor servidor;
+
+	@ManyToOne
+	@JoinColumn(name = "pessoa_juridica_id")
+	private PessoaJuridica pessoaJuridica;
 }
