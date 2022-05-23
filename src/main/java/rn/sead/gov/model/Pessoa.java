@@ -1,17 +1,11 @@
 package rn.sead.gov.model;
 
-import java.util.Objects;
+import lombok.*;
+import org.hibernate.Hibernate;
+import rn.sead.gov.model.generic.AbstractEntity;
 
 import javax.persistence.MappedSuperclass;
-
-import org.hibernate.Hibernate;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import rn.sead.gov.model.generic.AbstractEntity;
+import java.util.Objects;
 
 @MappedSuperclass
 @AllArgsConstructor
@@ -21,9 +15,9 @@ import rn.sead.gov.model.generic.AbstractEntity;
 @ToString
 public abstract class Pessoa extends AbstractEntity {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String nome;
+    private String nome;
 
     private String email;
 

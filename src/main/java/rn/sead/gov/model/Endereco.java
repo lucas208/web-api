@@ -1,6 +1,9 @@
 package rn.sead.gov.model;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 import rn.sead.gov.model.generic.AbstractEntity;
 
@@ -14,9 +17,9 @@ import java.util.Objects;
 @Entity
 public class Endereco extends AbstractEntity {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Long numero;
+    private Long numero;
 
     private String bairro;
 
@@ -28,9 +31,11 @@ public class Endereco extends AbstractEntity {
 
     private String pais;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "endereco")
     private PessoaFisica pessoaFisica;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "endereco")
     private PessoaJuridica pessoaJuridica;
 
