@@ -11,6 +11,12 @@ public class PessoaFisicaService extends AbstractService<PessoaFisica, PessoaFis
     public PessoaFisicaService(PessoaFisicaRepository repository) {
         super(repository);
     }
+
+	@Override
+	public void softDelete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 
 

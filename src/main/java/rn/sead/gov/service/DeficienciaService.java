@@ -11,4 +11,9 @@ public class DeficienciaService extends AbstractService<Deficiencia, Deficiencia
     public DeficienciaService(DeficienciaRepository repository) {
         super(repository);
     }
+
+	@Override
+	public void softDelete(Long id) {
+		repository.softDeleteDeficiencia(id);		
+	}
 }

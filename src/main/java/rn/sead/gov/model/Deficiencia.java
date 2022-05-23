@@ -1,11 +1,12 @@
 package rn.sead.gov.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Where;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ import rn.sead.gov.model.generic.AbstractEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
+@Where(clause = "status = true")
 @Table(name = "deficiencias")
 public class Deficiencia extends AbstractEntity {
 	
