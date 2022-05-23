@@ -22,19 +22,19 @@ import rn.sead.gov.model.generic.AbstractEntity;
 @Where(clause = "status = true")
 @Table(name = "deficiencias")
 public class Deficiencia extends AbstractEntity {
-	
-	private static final long serialVersionUID = 1L;
-	
-	private String descricao;
-	
-	private String cid;
-	
-	private String tipo;
-	
-	@ManyToMany(mappedBy="deficiencias")
-	private List<PessoaFisica> pessoasFisicas;
 
-	public List<PessoaFisica> getPessoasFisicas(){
-		return pessoasFisicas;
-	}
+    private static final long serialVersionUID = 1L;
+
+    private String descricao;
+
+    private String cid;
+
+    private String tipo;
+
+    @ManyToMany(mappedBy = "deficiencias")
+    private List<PessoaFisica> pessoasFisicas;
+
+    public List<PessoaFisica> getPessoasFisicas() {
+        return pessoasFisicas;
+    }
 }
