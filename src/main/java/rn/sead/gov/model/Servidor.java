@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,6 +27,7 @@ import rn.sead.gov.model.generic.AbstractEntity;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "servidores")
+@Where(clause = "removed = null")
 public class Servidor extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;

@@ -12,9 +12,8 @@ public class PessoaJuridicaService extends AbstractService<PessoaJuridica, Pesso
         super(repository);
     }
 
-	@Override
+    @Override
 	public void softDelete(Long id) {
-		// TODO Auto-generated method stub
-		
+		repository.softDeletePessoaJuridica(id);
 	}
 }

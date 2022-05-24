@@ -45,24 +45,24 @@ public class DeficienciaController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 
-//	@PutMapping(path = "/{id}")
-//	public ResponseEntity<Deficiencia> update(@PathVariable Long id, @RequestBody Deficiencia entity) {
-//
-//		return (ResponseEntity<Deficiencia>) service.update(id, entity).map(record -> ResponseEntity.ok().body((Deficiencia) record))
-//				.orElse(ResponseEntity.notFound().build());
-//	}
-	
 	@PutMapping(path = "/{id}")
+	public ResponseEntity<Deficiencia> update(@PathVariable Long id, @RequestBody Deficiencia entity) {
+
+		return (ResponseEntity<Deficiencia>) service.update(id, entity).map(record -> ResponseEntity.ok().body((Deficiencia) record))
+				.orElse(ResponseEntity.notFound().build());
+	}
+	
+	@DeleteMapping(path = "/{id}")
 	public void disable(@PathVariable Long id) {
 		service.softDelete(id);
 	}
 
-	@DeleteMapping(path = { "/{id}" })
-	public ResponseEntity<?> delete(@PathVariable Long id) {
-		if (service.delete(id)) {
-			return ResponseEntity.ok().build();
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
+//	@DeleteMapping(path = { "/{id}" })
+//	public ResponseEntity<?> delete(@PathVariable Long id) {
+//		if (service.delete(id)) {
+//			return ResponseEntity.ok().build();
+//		} else {
+//			return ResponseEntity.notFound().build();
+//		}
+//	}
 }

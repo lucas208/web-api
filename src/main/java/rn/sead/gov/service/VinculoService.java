@@ -12,9 +12,8 @@ public class VinculoService extends AbstractService<Vinculo, VinculoRepository> 
         super(repository);
     }
 
-	@Override
+    @Override
 	public void softDelete(Long id) {
-		// TODO Auto-generated method stub
-		
+		repository.softDeleteVinculo(id);
 	}
 }

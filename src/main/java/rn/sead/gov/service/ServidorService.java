@@ -12,9 +12,8 @@ public class ServidorService extends AbstractService<Servidor, ServidorRepositor
         super(repository);
     }
 
-	@Override
+    @Override
 	public void softDelete(Long id) {
-		// TODO Auto-generated method stub
-		
+		repository.softDeleteServidor(id);
 	}
 }

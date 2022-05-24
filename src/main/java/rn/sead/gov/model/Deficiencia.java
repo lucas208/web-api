@@ -19,7 +19,7 @@ import rn.sead.gov.model.generic.AbstractEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Where(clause = "status = true")
+@Where(clause = "removed = null")
 @Table(name = "deficiencias")
 public class Deficiencia extends AbstractEntity {
 	

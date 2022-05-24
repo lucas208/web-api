@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Where;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,6 +27,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
+@Where(clause = "removed = null")
 public class PessoaFisica extends Pessoa {
 
 	private static final long serialVersionUID = 1L;

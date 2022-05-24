@@ -2,6 +2,7 @@ package rn.sead.gov.model;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +15,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
+@Where(clause = "removed = null")
 public class PessoaJuridica extends Pessoa {
 
 	private static final long serialVersionUID = 1L;

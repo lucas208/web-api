@@ -14,9 +14,8 @@ public class EnderecoService extends AbstractService<Endereco, EnderecoRepositor
         super(repository);
     }
 
-	@Override
+    @Override
 	public void softDelete(Long id) {
-		// TODO Auto-generated method stub
-		
+		repository.softDeleteEndereco(id);
 	}
 }

@@ -13,6 +13,6 @@ public interface DeficienciaRepository extends GenericRepository<Deficiencia> {
 	
 	@Transactional
 	@Modifying
-	@Query("UPDATE Deficiencia d SET d.status = false WHERE d.id =:id")
+	@Query("UPDATE Deficiencia d SET d.removed = CURRENT_TIMESTAMP WHERE d.id =:id")
 	void softDeleteDeficiencia(@Param("id") Long id);
 }
