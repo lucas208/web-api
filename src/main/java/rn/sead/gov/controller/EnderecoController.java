@@ -21,7 +21,7 @@ import rn.sead.gov.service.EnderecoService;
 @RestController
 @RequestMapping(value = "/enderecos")
 public class EnderecoController {
-	
+
 	@Autowired
 	private EnderecoService service;
 
@@ -30,34 +30,29 @@ public class EnderecoController {
 		List<Endereco> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Endereco> create(@RequestBody Endereco entity) {
 		entity = service.create(entity);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(entity.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(entity.getId()).toUri();
 		return ResponseEntity.created(uri).body(entity);
 	}
 
 	@GetMapping(path = { "/{id}" })
 	public ResponseEntity<Endereco> findById(@PathVariable Long id) {
-		return (ResponseEntity<Endereco>) service.findById(id).map(record -> ResponseEntity.ok().body((Endereco) record))
-				.orElse(ResponseEntity.notFound().build());
+		return (ResponseEntity<Endereco>) service.findById(id)
+				.map(record -> ResponseEntity.ok().body((Endereco) record)).orElse(ResponseEntity.notFound().build());
 	}
 
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody Endereco entity) {
 
-		return (ResponseEntity<Endereco>) service.update(id, entity).map(record -> ResponseEntity.ok().body((Endereco) record))
-				.orElse(ResponseEntity.notFound().build());
+		return (ResponseEntity<Endereco>) service.update(id, entity)
+				.map(record -> ResponseEntity.ok().body((Endereco) record)).orElse(ResponseEntity.notFound().build());
 	}
 
-	@DeleteMapping(path = { "/{id}" })
-	public ResponseEntity<?> delete(@PathVariable Long id) {
-		if (service.delete(id)) {
-			return ResponseEntity.ok().build();
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+	@DeleteMapping(path = "/{id}")
+	public void disable(@PathVariable Long id) {
+		service.softDelete(id);
 	}
 }

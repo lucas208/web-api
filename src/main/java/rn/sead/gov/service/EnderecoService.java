@@ -5,12 +5,15 @@ import rn.sead.gov.model.Endereco;
 import rn.sead.gov.repository.EnderecoRepository;
 import rn.sead.gov.service.generic.AbstractService;
 
-import java.sql.PreparedStatement;
-
 @Service
 public class EnderecoService extends AbstractService<Endereco, EnderecoRepository> {
 
     public EnderecoService(EnderecoRepository repository) {
         super(repository);
     }
+
+    @Override
+	public void softDelete(Long id) {
+		repository.softDeleteEndereco(id);
+	}
 }

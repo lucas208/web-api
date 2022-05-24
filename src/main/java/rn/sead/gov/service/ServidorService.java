@@ -11,4 +11,9 @@ public class ServidorService extends AbstractService<Servidor, ServidorRepositor
     public ServidorService(ServidorRepository repository) {
         super(repository);
     }
+
+    @Override
+	public void softDelete(Long id) {
+		repository.softDeleteServidor(id);
+	}
 }

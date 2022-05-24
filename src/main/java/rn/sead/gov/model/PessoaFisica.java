@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Where;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
+@Where(clause = "removed = null")
 public class PessoaFisica extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
@@ -62,21 +64,37 @@ public class PessoaFisica extends Pessoa {
 	private Servidor servidor;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "pessoa_deficiencia", 
-		joinColumns = { @JoinColumn(name = "pessoa_id") },
-		inverseJoinColumns = {@JoinColumn(name = "deficiencia_id") })
+	@JoinTable(name = "pessoa_deficiencia", joinColumns = { @JoinColumn(name = "pessoa_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "deficiencia_id") })
 	private List<Deficiencia> deficiencias;
-	
+
+	public PessoaFisica(String nome, String cpf, String nacionalidade, String sexo, Date dataNascimento,
+			Endereco endereco) {
+		super(nome, null);
+		this.cpf = cpf;
+		this.nacionalidade = nacionalidade;
+		this.sexo = sexo;
+		this.dataNascimento = dataNascimento;
+		this.endereco = endereco;
+		this.rg = null;
+		this.uf = null;
+		this.estadoCivil = null;
+		this.pai = null;
+		this.mae = null;
+		this.nomeSocial = null;
+		this.servidor = null;
+	}
+
 	public void addDeficiencia(Deficiencia novaDeficiencia) {
 		deficiencias.add(novaDeficiencia);
 		novaDeficiencia.getPessoasFisicas().add(this);
 	}
-	
+
 	public void removeDeficiencia(Deficiencia removeDeficiencia) {
 		deficiencias.remove(removeDeficiencia);
 		removeDeficiencia.getPessoasFisicas().remove(this);
 	}
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
