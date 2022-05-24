@@ -17,14 +17,15 @@ import rn.sead.gov.dto.PessoaFisicaDtoRequest;
 import rn.sead.gov.dto.PessoaFisicaDtoResponse;
 import rn.sead.gov.model.PessoaFisica;
 import rn.sead.gov.service.PessoaFisicaService;
+import rn.sead.gov.service.ServidorService;
 
 @RestController
 @RequestMapping(value = "/pessoas_fisicas")
 public class PessoaFisicaController {
 
 	PessoaFisicaService service;
-
-	public PessoaFisicaController(PessoaFisicaService service) {
+	
+	public PessoaFisicaController(PessoaFisicaService service, ServidorService servidorService) {
 		this.service = service;
 	}
 
@@ -63,13 +64,4 @@ public class PessoaFisicaController {
 	public void disable(@PathVariable Long id) {
 		service.softDelete(id);
 	}
-
-//	@DeleteMapping(path = { "/{id}" })
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		if (service.delete(id)) {
-//			return ResponseEntity.ok().build();
-//		} else {
-//			return ResponseEntity.notFound().build();
-//		}
-//	}
 }

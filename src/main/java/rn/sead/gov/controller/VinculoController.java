@@ -55,13 +55,4 @@ public class VinculoController {
 	public void disable(@PathVariable Long id) {
 		service.softDelete(id);
 	}
-
-//	@DeleteMapping(path = { "/{id}" })
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		if (service.delete(id)) {
-//			return ResponseEntity.ok().build();
-//		} else {
-//			return ResponseEntity.notFound().build();
-//		}
-//	}	
 }

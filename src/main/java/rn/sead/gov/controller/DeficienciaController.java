@@ -21,7 +21,7 @@ import rn.sead.gov.service.DeficienciaService;
 @RestController
 @RequestMapping(value = "/deficiencias")
 public class DeficienciaController {
-	
+
 	@Autowired
 	private DeficienciaService service;
 
@@ -30,39 +30,31 @@ public class DeficienciaController {
 		List<Deficiencia> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Deficiencia> create(@RequestBody Deficiencia entity) {
 		entity = service.create(entity);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(entity.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(entity.getId()).toUri();
 		return ResponseEntity.created(uri).body(entity);
 	}
 
 	@GetMapping(path = { "/{id}" })
 	public ResponseEntity<Deficiencia> findById(@PathVariable Long id) {
-		return (ResponseEntity<Deficiencia>) service.findById(id).map(record -> ResponseEntity.ok().body((Deficiencia) record))
+		return (ResponseEntity<Deficiencia>) service.findById(id)
+				.map(record -> ResponseEntity.ok().body((Deficiencia) record))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PutMapping(path = "/{id}")
 	public ResponseEntity<Deficiencia> update(@PathVariable Long id, @RequestBody Deficiencia entity) {
 
-		return (ResponseEntity<Deficiencia>) service.update(id, entity).map(record -> ResponseEntity.ok().body((Deficiencia) record))
+		return (ResponseEntity<Deficiencia>) service.update(id, entity)
+				.map(record -> ResponseEntity.ok().body((Deficiencia) record))
 				.orElse(ResponseEntity.notFound().build());
 	}
-	
+
 	@DeleteMapping(path = "/{id}")
 	public void disable(@PathVariable Long id) {
 		service.softDelete(id);
 	}
-
-//	@DeleteMapping(path = { "/{id}" })
-//	public ResponseEntity<?> delete(@PathVariable Long id) {
-//		if (service.delete(id)) {
-//			return ResponseEntity.ok().build();
-//		} else {
-//			return ResponseEntity.notFound().build();
-//		}
-//	}
 }
