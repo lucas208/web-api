@@ -15,8 +15,11 @@ import java.util.Date;
 public class PessoaFisicaDtoRequest {
 
     String nome;
+    String email;
 
     String cpf;
+
+    String rg;
 
     String nacionalidade;
 
@@ -27,7 +30,7 @@ public class PessoaFisicaDtoRequest {
     Endereco endereco;
 
     public PessoaFisica convertToPessoaFisica() {
-        return new PessoaFisica(this.nome, this.cpf, this.nacionalidade, this.sexo, this.dataNascimento, this.endereco);
+        return new PessoaFisica(this.nome, this.email, this.cpf, this.rg, this.nacionalidade, this.sexo, this.dataNascimento, this.endereco);
     }
 
 

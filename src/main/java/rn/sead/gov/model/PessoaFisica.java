@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Where;
@@ -21,6 +21,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.br.CPF;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,8 +34,11 @@ public class PessoaFisica extends Pessoa {
 
 	private static final long serialVersionUID = 1L;
 
+	@CPF(message = "CPF inválido")
 	private String cpf;
 
+	@Digits(integer = 20, fraction = 0, message = "RG deve ser um número inteiro")
+	@Positive(message = "RG deve ser um número positivo")
 	private String rg;
 
 	private String uf;
@@ -44,6 +48,7 @@ public class PessoaFisica extends Pessoa {
 	@Column(name = "estado_civil")
 	private String estadoCivil;
 
+	@Pattern(regexp = "M|F", message = "M ou F")
 	private String sexo;
 
 	@Column(name = "data_nascimento")
@@ -68,15 +73,15 @@ public class PessoaFisica extends Pessoa {
 			@JoinColumn(name = "deficiencia_id") })
 	private List<Deficiencia> deficiencias;
 
-	public PessoaFisica(String nome, String cpf, String nacionalidade, String sexo, Date dataNascimento,
+	public PessoaFisica(String nome, String email, String cpf, String rg, String nacionalidade, String sexo, Date dataNascimento,
 			Endereco endereco) {
-		super(nome, null);
+		super(nome, email);
 		this.cpf = cpf;
+		this.rg = rg;
 		this.nacionalidade = nacionalidade;
 		this.sexo = sexo;
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
-		this.rg = null;
 		this.uf = null;
 		this.estadoCivil = null;
 		this.pai = null;

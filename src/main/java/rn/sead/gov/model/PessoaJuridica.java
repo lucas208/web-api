@@ -3,6 +3,7 @@ package rn.sead.gov.model;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Where;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -21,6 +22,7 @@ public class PessoaJuridica extends Pessoa {
 
     private static final long serialVersionUID = 1L;
 
+    @CNPJ(message = "CNPJ inválido")
     private String cnpj;
 
     @Column(name = "razao_social")

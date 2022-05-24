@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.Where;
 
@@ -25,6 +26,7 @@ public class Deficiencia extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @NotBlank
     private String descricao;
 
     private String cid;

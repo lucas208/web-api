@@ -5,6 +5,8 @@ import org.hibernate.Hibernate;
 import rn.sead.gov.model.generic.AbstractEntity;
 
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @MappedSuperclass
@@ -17,8 +19,10 @@ public abstract class Pessoa extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @NotBlank(message = "Nome não pode estar em branco")
     private String nome;
 
+    @Email(message = "E-mail inválido")
     private String email;
 
     @Override

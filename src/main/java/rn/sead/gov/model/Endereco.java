@@ -12,6 +12,7 @@ import rn.sead.gov.model.generic.AbstractEntity;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -24,6 +25,8 @@ public class Endereco extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;
 
+    @Digits(integer = 10, fraction = 0, message = "Número deve ser um número inteiro")
+    @Positive(message = "Número deve ser um número positivo")
     private Long numero;
 
     private String bairro;
