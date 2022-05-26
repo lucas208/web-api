@@ -2,6 +2,7 @@ package rn.sead.gov.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import rn.sead.gov.dto.ServidorDtoRequest;
+import rn.sead.gov.dto.ServidorDtoResponse;
 import rn.sead.gov.model.Servidor;
 import rn.sead.gov.service.ServidorService;
 
@@ -32,16 +35,21 @@ public class ServidorController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Servidor> create(@RequestBody Servidor entity) {
-		entity = service.create(entity);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(entity.getId()).toUri();
-		return ResponseEntity.created(uri).body(entity);
+	public ResponseEntity<Servidor> create(@RequestBody ServidorDtoRequest dto) {
+		Servidor servidor = service.create(dto.convertToServidor());
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(servidor.getId()).toUri();
+		return ResponseEntity.created(uri).body(servidor);
 	}
 
 	@GetMapping(path = { "/{id}" })
-	public ResponseEntity<Servidor> findById(@PathVariable Long id) {
-		return (ResponseEntity<Servidor>) service.findById(id)
-				.map(record -> ResponseEntity.ok().body((Servidor) record)).orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<ServidorDtoResponse> findById(@PathVariable Long id) {
+		Optional<Servidor> servidor = service.findById(id);
+		if(servidor.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		} else {
+			ServidorDtoResponse servidorDtoResponse = new ServidorDtoResponse(servidor.get());
+			return ResponseEntity.ok().body(servidorDtoResponse);
+		}
 	}
 
 	@PutMapping(value = "/{id}")

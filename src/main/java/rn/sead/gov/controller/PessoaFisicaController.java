@@ -1,5 +1,6 @@
 package rn.sead.gov.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import rn.sead.gov.dto.PessoaFisicaDtoRequest;
 import rn.sead.gov.dto.PessoaFisicaDtoResponse;
 import rn.sead.gov.model.PessoaFisica;
-import rn.sead.gov.service.PessoaFisicaService;
-import rn.sead.gov.service.ServidorService;
+import rn.sead.gov.service.*;
 
 @RestController
 @RequestMapping(value = "/pessoas_fisicas")
@@ -25,13 +26,15 @@ public class PessoaFisicaController {
 
 	PessoaFisicaService service;
 	
-	public PessoaFisicaController(PessoaFisicaService service, ServidorService servidorService) {
+	public PessoaFisicaController(PessoaFisicaService service) {
 		this.service = service;
 	}
 
 	@PostMapping
-	public PessoaFisica create(@RequestBody PessoaFisicaDtoRequest dto) {
-		return service.create(dto.convertToPessoaFisica());
+	public ResponseEntity<PessoaFisica> create(@RequestBody PessoaFisicaDtoRequest dto) {
+		PessoaFisica pessoaFisica = service.create(dto.convertToPessoaFisica());
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoaFisica.getId()).toUri();
+		return  ResponseEntity.created(uri).body(pessoaFisica);
 	}
 
 	@GetMapping(path = { "/{id}" })

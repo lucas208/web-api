@@ -16,6 +16,7 @@ import java.util.Date;
 @Setter
 @ToString
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class PessoaFisicaDtoResponse extends RepresentationModel<PessoaFisicaDtoResponse> {
 
     String nome;

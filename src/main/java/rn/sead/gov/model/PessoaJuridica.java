@@ -46,6 +46,16 @@ public class PessoaJuridica extends Pessoa {
     @OneToMany(mappedBy = "pessoaJuridica")
     private List<Vinculo> vinculos;
 
+    public PessoaJuridica(String cnpj, String razaoSocial, String nomeFantasia, Date dataRegistro,
+                          String naturezaJuridica, String contato) {
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.dataRegistro = dataRegistro;
+        this.naturezaJuridica = naturezaJuridica;
+        this.contato = contato;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

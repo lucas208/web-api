@@ -9,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import rn.sead.gov.model.generic.AbstractEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
@@ -40,7 +41,7 @@ public class Endereco extends AbstractEntity {
     private String pais;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "endereco")
+    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL)
     private PessoaFisica pessoaFisica;
 
     @JsonIgnore
@@ -53,6 +54,15 @@ public class Endereco extends AbstractEntity {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Endereco endereco = (Endereco) o;
         return getId() != null && Objects.equals(getId(), endereco.getId());
+    }
+
+    public Endereco(Long numero, String bairro, String logradouro, String cidade, String estado, String pais) {
+        this.numero = numero;
+        this.bairro = bairro;
+        this.logradouro = logradouro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
     }
 
     @Override

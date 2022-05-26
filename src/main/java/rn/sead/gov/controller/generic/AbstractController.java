@@ -7,7 +7,7 @@ import rn.sead.gov.service.generic.AbstractService;
 
 import java.util.List;
 
-public abstract class AbstractController<E extends AbstractEntity, S extends AbstractService> implements IGenericController<E> {
+public abstract class   AbstractController<E extends AbstractEntity, S extends AbstractService> implements IGenericController<E> {
     protected final S service;
 
     public AbstractController(S service) {

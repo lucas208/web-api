@@ -13,20 +13,16 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Where;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.validator.constraints.br.CPF;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
+@EqualsAndHashCode(callSuper = false)
 @ToString
 @Entity
 @Where(clause = "removed IS NULL")

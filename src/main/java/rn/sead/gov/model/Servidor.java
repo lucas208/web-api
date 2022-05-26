@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.Where;
 
 import lombok.AllArgsConstructor;
@@ -40,8 +41,15 @@ public class Servidor extends AbstractEntity {
 	@JoinColumn(name = "pessoa_id")
 	private PessoaFisica pessoaFisica;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "servidor", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
 	private List<Vinculo> vinculos = new ArrayList<>();
+
+	public Servidor(String matricula, String dadosBancarios, PessoaFisica pessoaFisica) {
+		this.matricula = matricula;
+		this.dadosBancarios = dadosBancarios;
+		this.pessoaFisica = pessoaFisica;
+	}
 
 	public void addVinculo(Vinculo novoVinculo) {
 		vinculos.add(novoVinculo);

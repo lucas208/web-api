@@ -7,6 +7,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.Where;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +34,13 @@ public class Deficiencia extends AbstractEntity {
 
     private String tipo;
 
+    public Deficiencia(String descricao, String cid, String tipo) {
+        this.descricao = descricao;
+        this.cid = cid;
+        this.tipo = tipo;
+    }
+
+    @JsonIgnore
     @ManyToMany(mappedBy = "deficiencias")
     private List<PessoaFisica> pessoasFisicas;
 

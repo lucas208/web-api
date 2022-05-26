@@ -2,6 +2,7 @@ package rn.sead.gov.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import rn.sead.gov.dto.DeficienciaDtoRequest;
+import rn.sead.gov.dto.DeficienciaDtoResponse;
 import rn.sead.gov.model.Deficiencia;
 import rn.sead.gov.service.DeficienciaService;
 
@@ -32,23 +35,30 @@ public class DeficienciaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Deficiencia> create(@RequestBody Deficiencia entity) {
-		entity = service.create(entity);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(entity.getId()).toUri();
-		return ResponseEntity.created(uri).body(entity);
+	public ResponseEntity<Deficiencia> create(@RequestBody DeficienciaDtoRequest dto) {
+		Deficiencia deficiencia = service.create(dto.convertToDeficiencia());
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(deficiencia.getId()).toUri();
+		return ResponseEntity.created(uri).body(deficiencia);
 	}
 
 	@GetMapping(path = { "/{id}" })
-	public ResponseEntity<Deficiencia> findById(@PathVariable Long id) {
-		return (ResponseEntity<Deficiencia>) service.findById(id)
-				.map(record -> ResponseEntity.ok().body((Deficiencia) record))
-				.orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<DeficienciaDtoResponse> findById(@PathVariable Long id) {
+		Optional<Deficiencia> deficiencia = service.findById(id);
+
+		if(deficiencia.isEmpty()) {
+			return ResponseEntity.notFound().build();
+
+		} else {
+			DeficienciaDtoResponse deficienciaDtoResponse = new DeficienciaDtoResponse(deficiencia.get());
+			return ResponseEntity.ok().body(deficienciaDtoResponse);
+
+		}
 	}
 
 	@PutMapping(path = "/{id}")
-	public ResponseEntity<Deficiencia> update(@PathVariable Long id, @RequestBody Deficiencia entity) {
-
-		return (ResponseEntity<Deficiencia>) service.update(id, entity)
+	public ResponseEntity<Deficiencia> update(@PathVariable Long id, @RequestBody DeficienciaDtoRequest dto) {
+		Deficiencia deficiencia = dto.convertToDeficiencia();
+		return (ResponseEntity<Deficiencia>) service.update(id, deficiencia)
 				.map(record -> ResponseEntity.ok().body((Deficiencia) record))
 				.orElse(ResponseEntity.notFound().build());
 	}

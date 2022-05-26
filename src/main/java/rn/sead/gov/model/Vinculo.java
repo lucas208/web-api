@@ -32,7 +32,7 @@ public class Vinculo extends AbstractEntity {
 	private LocalDate dataNomeacao;
 
 	@Column(name = "data_posse")
-	private LocalDate dataPosse;
+		private LocalDate dataPosse;
 
 	@Column(name = "data_exercicio")
 	private LocalDate dataExercicio;
@@ -54,4 +54,6 @@ public class Vinculo extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "pessoa_juridica_id")
 	private PessoaJuridica pessoaJuridica;
+
+
 }
