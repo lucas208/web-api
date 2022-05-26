@@ -20,7 +20,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Data
 @Entity
-@Where(clause = "removed = null")
+@Where(clause = "removed IS NULL")
 public class Endereco extends AbstractEntity {
 
     private static final long serialVersionUID = 1L;

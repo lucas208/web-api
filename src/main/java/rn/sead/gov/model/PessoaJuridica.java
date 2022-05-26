@@ -17,7 +17,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-@Where(clause = "removed = null")
+@Where(clause = "removed IS NULL")
 public class PessoaJuridica extends Pessoa {
 
     private static final long serialVersionUID = 1L;

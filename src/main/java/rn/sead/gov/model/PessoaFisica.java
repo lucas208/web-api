@@ -29,7 +29,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Setter
 @ToString
 @Entity
-@Where(clause = "removed = null")
+@Where(clause = "removed IS NULL")
 public class PessoaFisica extends Pessoa {
 
 	private static final long serialVersionUID = 1L;

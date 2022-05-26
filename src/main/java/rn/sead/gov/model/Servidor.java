@@ -26,7 +26,7 @@ import rn.sead.gov.model.generic.AbstractEntity;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "servidores")
-@Where(clause = "removed = null")
+@Where(clause = "removed IS NULL")
 public class Servidor extends AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
