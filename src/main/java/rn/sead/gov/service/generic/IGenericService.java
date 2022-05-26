@@ -1,13 +1,15 @@
 package rn.sead.gov.service.generic;
 
-import rn.sead.gov.model.generic.AbstractEntity;
-
-import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import rn.sead.gov.model.generic.AbstractEntity;
 
 public interface IGenericService<E extends AbstractEntity> {
 
-    List<E> findAll();
+	Page<E> findAll(Pageable pageable);
 
     E create(E entity);
 
@@ -17,5 +19,5 @@ public interface IGenericService<E extends AbstractEntity> {
 
     Boolean delete(Long id);
     
-    void softDelete(Long id);
+    Boolean softDelete(Long id);
 }

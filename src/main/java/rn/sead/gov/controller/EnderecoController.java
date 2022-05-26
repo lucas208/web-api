@@ -1,10 +1,12 @@
 package rn.sead.gov.controller;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,9 +31,9 @@ public class EnderecoController {
 	private EnderecoService service;
 
 	@GetMapping
-	public ResponseEntity<List<Endereco>> findAll() {
-		List<Endereco> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+	public ResponseEntity<Page<Endereco>> findAll(Pageable pageable) {
+		Page<Endereco> page =service.findAll(pageable);
+		return ResponseEntity.ok().body(page);
 	}
 
 	@PostMapping
@@ -61,7 +63,11 @@ public class EnderecoController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public void disable(@PathVariable Long id) {
-		service.softDelete(id);
+	public ResponseEntity<?> disable(@PathVariable Long id) {
+		if (service.softDelete(id)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
