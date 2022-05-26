@@ -1,6 +1,9 @@
 package rn.sead.gov.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
 import rn.sead.gov.model.Endereco;
 import rn.sead.gov.repository.EnderecoRepository;
 import rn.sead.gov.service.generic.AbstractService;
@@ -13,7 +16,13 @@ public class EnderecoService extends AbstractService<Endereco, EnderecoRepositor
     }
 
     @Override
-	public void softDelete(Long id) {
-		repository.softDeleteEndereco(id);
+	public Boolean softDelete(Long id) {
+		Optional<Endereco> endereco = repository.findById(id);
+		if (endereco.isEmpty()) {
+			return false;
+		} else {
+			repository.softDeleteEndereco(id);
+			return true;
+		}
 	}
 }

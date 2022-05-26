@@ -46,7 +46,11 @@ public class PessoaJuridicaController {
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public void disable(@PathVariable Long id) {
-		service.softDelete(id);
+	public ResponseEntity<?> disable(@PathVariable Long id) {
+		if (service.softDelete(id)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

@@ -1,6 +1,9 @@
 package rn.sead.gov.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
 import rn.sead.gov.model.Servidor;
 import rn.sead.gov.repository.ServidorRepository;
 import rn.sead.gov.service.generic.AbstractService;
@@ -13,7 +16,13 @@ public class ServidorService extends AbstractService<Servidor, ServidorRepositor
     }
 
     @Override
-	public void softDelete(Long id) {
-		repository.softDeleteServidor(id);
+	public Boolean softDelete(Long id) {
+		Optional<Servidor> servidor = repository.findById(id);
+		if (servidor.isEmpty()) {
+			return false;
+		} else {
+			repository.softDeleteServidor(id);
+			return true;
+		}
 	}
 }

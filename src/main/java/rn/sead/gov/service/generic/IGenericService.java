@@ -17,5 +17,5 @@ public interface IGenericService<E extends AbstractEntity> {
 
     Boolean delete(Long id);
     
-    void softDelete(Long id);
+    Boolean softDelete(Long id);
 }
