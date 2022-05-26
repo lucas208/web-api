@@ -1,9 +1,17 @@
 package rn.sead.gov.dto;
+import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import rn.sead.gov.controller.EnderecoController;
 import rn.sead.gov.model.Endereco;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class EnderecoDtoResponse extends RepresentationModel<EnderecoDtoResponse> {
 
     Long numero;

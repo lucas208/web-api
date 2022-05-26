@@ -1,5 +1,6 @@
 package rn.sead.gov.dto;
 
+import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import rn.sead.gov.controller.PessoaFisicaController;
 import rn.sead.gov.controller.PessoaJuridicaController;
@@ -13,6 +14,13 @@ import java.time.LocalDate;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class VinculoDtoResponse extends RepresentationModel<VinculoDtoResponse> {
 
     LocalDate dataNomeacao;

@@ -1,5 +1,6 @@
 package rn.sead.gov.dto;
 
+import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import rn.sead.gov.controller.PessoaFisicaController;
 import rn.sead.gov.controller.ServidorController;
@@ -8,6 +9,13 @@ import rn.sead.gov.model.Servidor;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class ServidorDtoResponse extends RepresentationModel<ServidorDtoResponse> {
 
     String matricula;
