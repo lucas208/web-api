@@ -1,10 +1,12 @@
 package rn.sead.gov.service.generic;
 
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import rn.sead.gov.model.generic.AbstractEntity;
 import rn.sead.gov.repository.generic.GenericRepository;
-
-import java.util.List;
-import java.util.Optional;
 
 public abstract class AbstractService<E extends AbstractEntity, R extends GenericRepository<E>> implements IGenericService<E> {
     protected final R repository;
@@ -14,8 +16,8 @@ public abstract class AbstractService<E extends AbstractEntity, R extends Generi
     }
 
     @Override
-    public List<E> findAll() {
-        return repository.findAll();
+    public Page<E> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     @Override

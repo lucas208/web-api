@@ -1,8 +1,9 @@
 package rn.sead.gov.controller;
 
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,9 +56,9 @@ public class PessoaFisicaController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<PessoaFisica>> findAll() {
-		List<PessoaFisica> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+	public ResponseEntity<Page<PessoaFisica>> findAll(Pageable pageable) {
+		Page<PessoaFisica> page =service.findAll(pageable);
+		return ResponseEntity.ok().body(page);
 	}
 	
 	@DeleteMapping(path = "/{id}")
