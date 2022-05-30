@@ -1,8 +1,9 @@
 package rn.sead.gov.controller;
 
 import java.net.URI;
-
 import java.util.Optional;
+
+import javax.annotation.security.RolesAllowed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +32,7 @@ public class DeficienciaController {
 	private DeficienciaService service;
 
 	@GetMapping
+	@RolesAllowed("admin")
 	public ResponseEntity<Page<Deficiencia>> findAll(Pageable pageable) {
 		Page<Deficiencia> page =service.findAll(pageable);
 		return ResponseEntity.ok().body(page);
@@ -43,6 +45,7 @@ public class DeficienciaController {
 		return ResponseEntity.created(uri).body(deficiencia);
 	}
 
+	@RolesAllowed("user")
 	@GetMapping(path = { "/{id}" })
 	public ResponseEntity<DeficienciaDtoResponse> findById(@PathVariable Long id) {
 		Optional<Deficiencia> deficiencia = service.findById(id);
