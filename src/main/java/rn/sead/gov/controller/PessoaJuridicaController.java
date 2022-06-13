@@ -58,14 +58,14 @@ public class PessoaJuridicaController {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<PessoaJuridica> update(@PathVariable Long id, @RequestBody PessoaJuridicaDtoRequest dto) {
 		PessoaJuridica pessoaJuridica = dto.convertToPessoaJuridica();
-		return (ResponseEntity<PessoaJuridica>) service.update(id, pessoaJuridica)
-				.map(record -> ResponseEntity.ok().body((PessoaJuridica) record))
+		return service.update(id, pessoaJuridica)
+				.map(rec -> ResponseEntity.ok().body(rec))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> disable(@PathVariable Long id) {
-		if (service.softDelete(id)) {
+	public ResponseEntity<PessoaJuridica> disable(@PathVariable Long id) {
+		if (Boolean.TRUE.equals(service.softDelete(id))) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.notFound().build();

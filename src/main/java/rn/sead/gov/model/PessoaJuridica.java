@@ -6,7 +6,6 @@ import org.hibernate.annotations.Where;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;

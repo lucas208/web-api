@@ -19,7 +19,7 @@ public class ServidorDtoRequest {
 
     PessoaFisica pessoaFisica;
 
-    public Servidor convertToServidor() {
-        return new Servidor(this.matricula, this.dadosBancarios, this.pessoaFisica);
+    public Servidor convertToDtoServidor() {
+        return  new Servidor(this.matricula, this.dadosBancarios, this.pessoaFisica);
     }
 }

@@ -58,13 +58,13 @@ public class EnderecoController {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Endereco> update(@PathVariable Long id, @RequestBody EnderecoDtoRequest dto) {
 		Endereco endereco = dto.convertToEndereco();
-		return (ResponseEntity<Endereco>) service.update(id, endereco)
-				.map(record -> ResponseEntity.ok().body((Endereco) record)).orElse(ResponseEntity.notFound().build());
+		return service.update(id, endereco)
+				.map(rec -> ResponseEntity.ok().body(rec)).orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> disable(@PathVariable Long id) {
-		if (service.softDelete(id)) {
+	public ResponseEntity<Endereco> disable(@PathVariable Long id) {
+		if (Boolean.TRUE.equals(service.softDelete(id))) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.notFound().build();
