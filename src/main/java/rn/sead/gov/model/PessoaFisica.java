@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.*;
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Where;
 
@@ -60,6 +61,7 @@ public class PessoaFisica extends Pessoa {
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "pessoaFisica")
 	private Servidor servidor;
 
@@ -68,8 +70,8 @@ public class PessoaFisica extends Pessoa {
 			@JoinColumn(name = "deficiencia_id") })
 	private List<Deficiencia> deficiencias;
 
-	public PessoaFisica(String nome, String email, String cpf, String rg, String nacionalidade, String sexo, Date dataNascimento,
-			Endereco endereco) {
+	public PessoaFisica(String nome, String email, String cpf, String rg, String nacionalidade,
+						String sexo, Date dataNascimento, Endereco endereco) {
 		super(nome, email);
 		this.cpf = cpf;
 		this.rg = rg;

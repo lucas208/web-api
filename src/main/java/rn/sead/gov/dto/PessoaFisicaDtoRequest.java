@@ -29,6 +29,7 @@ public class PessoaFisicaDtoRequest {
 
     Endereco endereco;
 
+
     public PessoaFisica convertToPessoaFisica() {
         return new PessoaFisica(this.nome, this.email, this.cpf, this.rg, this.nacionalidade, this.sexo, this.dataNascimento, this.endereco);
     }
