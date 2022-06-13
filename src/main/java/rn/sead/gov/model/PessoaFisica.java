@@ -23,6 +23,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper = false)
 @ToString
 @Entity
 @Where(clause = "removed IS NULL")
@@ -44,7 +45,7 @@ public class PessoaFisica extends Pessoa {
 	@Column(name = "estado_civil")
 	private String estadoCivil;
 
-	@Pattern(regexp = "[MF]", message = "M ou F")
+	@Pattern(regexp = "M|F", message = "M ou F")
 	private String sexo;
 
 	@Column(name = "data_nascimento")

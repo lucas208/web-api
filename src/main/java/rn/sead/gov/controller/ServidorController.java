@@ -38,7 +38,7 @@ public class ServidorController {
 
 	@PostMapping
 	public ResponseEntity<Servidor> create(@RequestBody ServidorDtoRequest dto) {
-		Servidor servidor = service.create(dto.convertToDtoServidor());
+		Servidor servidor = service.create(dto.convertToServidor());
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(servidor.getId()).toUri();
 		return ResponseEntity.created(uri).body(servidor);
 	}
@@ -55,15 +55,15 @@ public class ServidorController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Servidor> update(@PathVariable Long id, @RequestBody ServidorDtoRequest dto) {
-		Servidor servidor = dto.convertToDtoServidor();
-		return service.update(id, servidor)
-				.map(rec -> ResponseEntity.ok().body(rec)).orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<Servidor> update(@PathVariable Long id, @RequestBody Servidor entity) {
+
+		return (ResponseEntity<Servidor>) service.update(id, entity)
+				.map(record -> ResponseEntity.ok().body((Servidor) record)).orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Servidor> disable(@PathVariable Long id) {
-		if (Boolean.TRUE.equals(service.softDelete(id))) {
+	public ResponseEntity<?> disable(@PathVariable Long id) {
+		if (service.softDelete(id)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.notFound().build();

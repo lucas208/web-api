@@ -11,7 +11,7 @@ import rn.sead.gov.repository.generic.GenericRepository;
 public abstract class AbstractService<E extends AbstractEntity, R extends GenericRepository<E>> implements IGenericService<E> {
     protected final R repository;
 
-    protected AbstractService(R repository) {
+    public AbstractService(R repository) {
         this.repository = repository;
     }
 
@@ -35,16 +35,16 @@ public abstract class AbstractService<E extends AbstractEntity, R extends Generi
         entity.setId(id);
         return repository
                 .findById(id)
-                .map(rec -> {
+                .map(record -> {
                     repository.saveAndFlush(entity);
-                    return rec;
+                    return record;
                 });
     }
 
     @Override
     public Boolean delete(Long id) {
         return repository.findById(id)
-                .map(rec -> {
+                .map(record -> {
                     repository.deleteById(id);
                     return true;
                 }).orElse(false);

@@ -63,14 +63,14 @@ public class DeficienciaController {
 	@PutMapping(path = "/{id}")
 	public ResponseEntity<Deficiencia> update(@PathVariable Long id, @RequestBody DeficienciaDtoRequest dto) {
 		Deficiencia deficiencia = dto.convertToDeficiencia();
-		return service.update(id, deficiencia)
-				.map(rec -> ResponseEntity.ok().body(rec))
+		return (ResponseEntity<Deficiencia>) service.update(id, deficiencia)
+				.map(record -> ResponseEntity.ok().body((Deficiencia) record))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Deficiencia> disable(@PathVariable Long id) {
-		if (Boolean.TRUE.equals(service.softDelete(id))) {
+	public ResponseEntity<?> disable(@PathVariable Long id) {
+		if (service.softDelete(id)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.notFound().build();
