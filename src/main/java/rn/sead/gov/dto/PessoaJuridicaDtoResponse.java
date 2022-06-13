@@ -1,11 +1,6 @@
 package rn.sead.gov.dto;
 
 import org.springframework.hateoas.RepresentationModel;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import rn.sead.gov.controller.EnderecoController;
 import rn.sead.gov.controller.PessoaJuridicaController;
 import rn.sead.gov.model.Endereco;
@@ -15,10 +10,6 @@ import java.util.Date;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
-@Data
 public class PessoaJuridicaDtoResponse extends RepresentationModel<PessoaJuridicaDtoResponse> {
 
     String cnpj;

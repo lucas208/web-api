@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import rn.sead.gov.dto.VinculoDtoRequest;
 import rn.sead.gov.dto.VinculoDtoResponse;
+import rn.sead.gov.model.Endereco;
 import rn.sead.gov.model.Vinculo;
 import rn.sead.gov.service.VinculoService;
 
@@ -57,13 +58,13 @@ public class VinculoController {
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Vinculo> update(@PathVariable Long id, @RequestBody VinculoDtoRequest dto) {
 		Vinculo vinculo = dto.convertToDtoVinculo();
-		return service.update(id, vinculo)
-				.map(rec -> ResponseEntity.ok().body(rec)).orElse(ResponseEntity.notFound().build());
+		return (ResponseEntity<Vinculo>) service.update(id, vinculo)
+				.map(record -> ResponseEntity.ok().body((Vinculo) record)).orElse(ResponseEntity.notFound().build());
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<Vinculo> disable(@PathVariable Long id) {
-		if (Boolean.TRUE.equals(service.softDelete(id))) {
+	public ResponseEntity<?> disable(@PathVariable Long id) {
+		if (service.softDelete(id)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.notFound().build();

@@ -35,5 +35,4 @@ public class ServidorDtoResponse extends RepresentationModel<ServidorDtoResponse
         this.pessoaFisica.add(linkTo(PessoaFisicaController.class).slash(this.pessoaFisica.getId()).withSelfRel());
         this.pessoaFisica.add(linkTo(PessoaFisicaController.class).withRel("AllPessoasFisicas"));
     }
-
 }
